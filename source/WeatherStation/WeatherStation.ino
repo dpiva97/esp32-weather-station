@@ -10,9 +10,9 @@
 Adafruit_BME280 bme; // I2C
 #define TEMPERATURE_BUS 33
 
-const char *ssid = "ssid";
-const char *password = "password";
-const String serverName  = "serverName";
+const char *ssid = "ssid"; //wifi name
+const char *password = "password"; //wifi password
+const String serverName  = "serverName"; //api server name
 
 OneWire oneWire(TEMPERATURE_BUS);
 DallasTemperature sensors(&oneWire);
@@ -23,6 +23,7 @@ float tempBme;
 float humidity;
 float pressure;
 
+//init wifi connection
 void wifi_connect()
 {
     int connectTries = 0;
@@ -50,6 +51,8 @@ void wifi_connect()
     Serial.println(" ");
 }
 
+//activate sleeping mode
+//sleeptime is the number of minutes
 void sleep(int sleeptime)
 {
     Serial.println("Weather station going to sleep...");
@@ -59,6 +62,7 @@ void sleep(int sleeptime)
     esp_deep_sleep_start();
 }
 
+//read data from sensors
 void read_data()
 {
     sensors.requestTemperatures();
@@ -69,6 +73,7 @@ void read_data()
     humidity = bme.readHumidity();
 }
 
+//mock for tests
 void read_data_mock()
 {
     tempair = 1.999;
@@ -77,6 +82,7 @@ void read_data_mock()
     humidity = 4.8;
 }
 
+//print readed data on serial monitor
 void print_data()
 {
     Serial.print("Air temperature [°C]: ");
@@ -90,6 +96,7 @@ void print_data()
     Serial.println();
 }
 
+//send data to external api
 void push_to_be()
 {
     if (WiFi.status() == WL_CONNECTED)
