@@ -7,5 +7,5 @@ Weather station builded with these components: <br />
 
 The weather station can send the data to a rest api. <br />
 I use these custom rest api made with nodeJs : (todo add link of repository) <br />
-for store the data in a postgresql database and send data to weathercloud https://app.weathercloud.net/d7617132597#current 
+for store the data in a postgresql database and send data to weathercloud (https://app.weathercloud.net/d7617132597#current) <br />
 You can send data directly to weathercloud
